@@ -8,32 +8,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}}</script>
 <style>
-[data-theme=dark]{color-scheme:dark;--bg:#090d16;--sf:rgba(15,23,42,.8);--p:#0b1220;--ln:#334155;--tx:#f1f5f9;--mu:#a3b1c6;--ac:#22d3ee;--acx:#06101c;--ok:#34d399;--bad:#fb7185;--warn:#fbbf24;--in:#020617;--g1:rgba(6,182,212,.12);--g2:rgba(59,130,246,.1)}
-[data-theme=light]{color-scheme:light;--bg:#f2f6fb;--sf:#fff;--p:#eef3f9;--ln:#c3cfdd;--tx:#0f172a;--mu:#475569;--ac:#0e7490;--acx:#fff;--ok:#047857;--bad:#be123c;--warn:#b45309;--in:#fff;--g1:rgba(14,116,144,.1);--g2:rgba(37,99,235,.08)}
+:root{
+  --z1:#1e6fd9;--z2:#7b3fbf;--z3:#ef8a17;--z4:#2e9d4b;
+  --r-zone:5mm;--r-card:3mm;
+  font-family:'DejaVu Sans',Inter,Arial,sans-serif;
+}
+[data-theme=dark]{
+  color-scheme:dark;
+  --bg:#0b1d33;--sf:rgba(16,33,61,.85);--p:#10213d;--ln:#7fb6ff;
+  --tx:#ffffff;--mu:#c9d6ee;
+  --ac:#9ff5ec;--ac2:#12c6b5;--acx:#0b1d33;
+  --ok:#3ecb62;--bad:#e24b4b;--warn:#ffc933;
+  --allow-bg:#d8f5de;--allow-bd:#3ecb62;--allow-tx:#1b6b30;
+  --deny-bg:#fde0e0;--deny-bd:#e24b4b;--deny-tx:#a31616;
+  --in:#071324;
+  --g1:rgba(18,198,181,.16);--g2:rgba(30,111,217,.18);
+}
+[data-theme=light]{
+  color-scheme:light;
+  --bg:#eef4fb;--sf:#ffffff;--p:#e1ecf8;--ln:#4a7ebb;
+  --tx:#0b1d33;--mu:#3b5275;
+  --ac:#12c6b5;--ac2:#0e9f91;--acx:#0b1d33;
+  --ok:#1b6b30;--bad:#a31616;--warn:#b45309;
+  --allow-bg:#d8f5de;--allow-bd:#3ecb62;--allow-tx:#1b6b30;
+  --deny-bg:#fde0e0;--deny-bd:#e24b4b;--deny-tx:#a31616;
+  --in:#ffffff;
+  --g1:rgba(18,198,181,.12);--g2:rgba(30,111,217,.10);
+}
 body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixed;background-image:radial-gradient(at 0 0,var(--g1),transparent 50%),radial-gradient(at 100% 0,var(--g2),transparent 50%);color:var(--tx);transition:background-color .3s,color .3s}
 .card{background:var(--sf);border:1px solid var(--ln);border-radius:1rem;backdrop-filter:blur(10px);animation:in .35s ease-out}
-.pane{background:var(--p);border:1px solid var(--ln);border-radius:.75rem}
+.pane,.panel{background:var(--p);border:1px solid var(--ln);border-radius:12px}
 .mu{color:var(--mu)}.ac{color:var(--ac)}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}.hd{border-bottom:1px solid var(--ln)}
+.logo{font-weight:700;font-style:italic;letter-spacing:-.02em}.logo span{color:var(--ac)}
+.zone-1{--c:var(--z1)}.zone-2{--c:var(--z2)}.zone-3{--c:var(--z3)}.zone-4{--c:var(--z4)}
+.zone{background:color-mix(in srgb,var(--c) 14%,transparent);border:2px solid var(--c);border-radius:var(--r-zone)}
+.badge{display:inline-grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--bg);color:var(--ac);font-weight:700}
+.slot{border:3px dashed rgba(255,255,255,.9);background:rgba(255,255,255,.14);border-radius:12px}
 .inp{width:100%;min-height:48px;background:var(--in);border:1px solid var(--ln);color:var(--tx);border-radius:.75rem;padding:.6rem 1rem;font:500 1rem 'JetBrains Mono',monospace;text-transform:uppercase}
 .btn{min-height:48px;padding:.6rem 1.25rem;border-radius:.75rem;font-weight:600;background:var(--ac);color:var(--acx);transition:filter .15s,transform .15s}
-.btn:hover{filter:brightness(1.12)}.btn:active{transform:scale(.97)}
-.btn.g{background:var(--ok)}.btn.r{background:var(--bad);color:#fff}.btn.gh{background:transparent;color:var(--mu);border:1px solid var(--ln)}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}
+.btn.g{background:var(--ok);color:#0b1d33}.btn.r{background:var(--bad);color:#fff}.btn.gh{background:transparent;color:var(--mu);border:1px solid var(--ln)}
 :is(.inp,.btn,.ib,a):focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .ib{width:44px;height:44px;display:grid;place-items:center;border-radius:.75rem;border:1px solid var(--ln);background:var(--p)}
 [data-theme=dark] .i-sun,[data-theme=light] .i-moon{display:none}
-.alert{background:color-mix(in srgb,var(--bad) 14%,var(--sf));border:1px solid var(--bad);color:var(--tx);border-radius:.75rem}
+.alert{background:var(--deny-bg);border:1px solid var(--deny-bd);color:var(--deny-tx);border-radius:.75rem}
 .st{flex:none;width:32px;height:32px;border:1px solid transparent;border-radius:.5rem;display:flex;align-items:center;justify-content:center;padding:0;font:600 .75rem/1 'JetBrains Mono',monospace;background:var(--p);color:var(--mu);transition:background-color .3s,color .3s,border-color .3s}
-.st.done{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok);border:1px solid var(--ok)}
+.st.done{background:var(--allow-bg);color:var(--allow-tx);border:1px solid var(--allow-bd)}
 .st.now{background:var(--ac);color:var(--acx);border-color:var(--ac)}
 .heart{display:inline-block;transition:color .3s}.heart.off{color:var(--ln);animation:pop .5s}
 .shake{animation:shake .4s}
 /* Terminal : volontairement sombre dans les 2 thèmes */
-.term{background:#05080f;border:1px solid #1e293b;border-radius:.75rem;color:#cbd5e1;font:.78rem/1.65 'JetBrains Mono',monospace;overflow:hidden;box-shadow:0 20px 40px -12px rgba(0,0,0,.5)}
-.tbar{display:flex;align-items:center;gap:6px;padding:.6rem .8rem;background:#0d1424;border-bottom:1px solid #1e293b;color:#94a3b8;font-size:.7rem}
-.tbar i{width:10px;height:10px;border-radius:50%;background:#ef4444}.tbar i:nth-child(2){background:#f59e0b}.tbar i:nth-child(3){background:#22c55e}.tbar span{margin-left:.5rem}
+.term{background:#071324;border:1px solid #7fb6ff;border-radius:.75rem;color:#c9d6ee;font:.78rem/1.65 'JetBrains Mono',monospace;overflow:hidden;box-shadow:0 20px 40px -12px rgba(0,0,0,.5)}
+.tbar{display:flex;align-items:center;gap:6px;padding:.6rem .8rem;background:#10213d;border-bottom:1px solid #7fb6ff;color:#c9d6ee;font-size:.7rem}
+.tbar i{width:10px;height:10px;border-radius:50%;background:#e24b4b}.tbar i:nth-child(2){background:#ffc933}.tbar i:nth-child(3){background:#3ecb62}.tbar span{margin-left:.5rem}
 #term-out{padding:.9rem;min-height:15rem;white-space:pre-wrap;word-break:break-word}
-.term .ok{color:#34d399}.term .ac{color:#22d3ee}.term .bad{color:#fb7185}
-.term .cur{display:inline-block;width:.55em;height:1.1em;background:#22d3ee;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.term .ok{color:#3ecb62}.term .ac{color:#9ff5ec}.term .bad{color:#e24b4b}
+.term .cur{display:inline-block;width:.55em;height:1.1em;background:#9ff5ec;vertical-align:-2px;animation:blink 1s steps(1) infinite}
 /* Pare-feu : compilateur de règles */
 .lt{position:relative;width:2.1rem;height:2.6rem;display:grid;place-items:center;border:1px solid var(--ln);border-radius:.5rem;background:var(--in);font:700 1.05rem/1 'JetBrains Mono',monospace;transition:border-color .3s,box-shadow .3s,color .3s}
 .lt small{position:absolute;right:3px;bottom:2px;font:600 .5rem/1 'JetBrains Mono',monospace;color:var(--mu);opacity:0;transition:opacity .3s}
@@ -115,7 +145,7 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
       <div class="pane p-4 space-y-3">
         <div class="flex justify-between text-xs mu"><span>Assigned card draw</span><span class="font-mono">1 trap / 3 legit</span></div>
         <div id="z1-cards-display" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
-        <p class="text-xs mu">Flip the fraudulent card and read the tracking code on its back (e.g. <code class="ac font-mono">XXXX-0000</code>).</p>
+        <p class="text-xs mu">Flip the fraudulent card and read the 8-letter tracking code on its back (e.g. <code class="ac font-mono">FGEZISTR</code>).</p>
       </div>
       <div id="z1-success-panel" class="hidden pane p-4 space-y-4" style="border-color:var(--ok)" role="status">
         <p id="z1-violation-msg" class="text-sm leading-relaxed"></p>
@@ -123,7 +153,7 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
       </div>
       <div id="z1-form" class="flex flex-col sm:flex-row gap-3">
         <label for="z1-input" class="sr-only">Back tracking code</label>
-        <input id="z1-input" class="inp" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Back tracking code…" />
+        <input id="z1-input" class="inp" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="8-letter tracking code…" />
         <button type="button" onclick="validateZone1()" class="btn shrink-0">Verify code</button>
       </div>
     </div>
@@ -131,8 +161,11 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
 
   <!-- 2 STEGANOGRAPHIE + SHELL -->
   <section id="screen-2" class="card hidden" aria-labelledby="h2">
-    <div class="p-5 sm:p-8 hd"><p class="ac text-xs font-mono font-semibold">Stage 02 • Hidden data</p>
-      <h2 id="h2" tabindex="-1" class="text-xl sm:text-2xl font-bold mt-1">Steganography &amp; Metadata</h2></div>
+    <div class="p-5 sm:p-8 hd flex items-start justify-between gap-3">
+      <div><p class="ac text-xs font-mono font-semibold">Stage 02 • Hidden data</p>
+        <h2 id="h2" tabindex="-1" class="text-xl sm:text-2xl font-bold mt-1">Steganography &amp; Metadata</h2></div>
+      <span id="z2-debug-badge" class="font-mono text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 border border-cyan-500/50"></span>
+    </div>
     <div class="p-5 sm:p-8 space-y-5">
       <p class="mu leading-relaxed text-sm">Attachment extracted from <span id="z2-source-trap" class="ac font-mono"></span>. Insert the matching <b style="color:var(--tx)">File Grid</b> in Zone 2, align your <b style="color:var(--tx)">Punch Card</b> with the board legend and read the 6 characters <b class="ac">top to bottom, left to right</b>.</p>
       <div class="grid grid-cols-3 gap-2 sm:gap-4 text-center">
@@ -185,7 +218,7 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
               <div id="z3-cipher-display" class="font-mono text-2xl sm:text-3xl font-bold ac tracking-widest mt-1 break-all"></div></div>
             <span class="warn font-mono text-xs font-semibold px-3 py-1.5 rounded-lg" style="border:1px solid var(--warn)">SHIFT <span id="z3-shift-badge"></span></span>
           </div>
-          <!-- <p class="text-xs mu">Decode with your physical <b style="color:var(--tx)">Cipher Wheel</b> set to the shift above.</p><details class="pane"><summary class="px-3 min-h-[44px] flex items-center text-sm cursor-pointer ac font-medium">Stuck? Show the Caesar table</summary><div id="caesar" class="space-y-2 p-3"></div></details> -->
+          <div id="caesar" class="hidden"></div>
         </div>
         <div id="z3-form" class="flex flex-col sm:flex-row gap-3">
           <label for="z3-input" class="sr-only">Decrypted password</label>
@@ -205,10 +238,12 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
     <div class="p-5 sm:p-8 hd flex items-start justify-between gap-3">
       <div><p class="ac text-xs font-mono font-semibold">Stage 04 • Network defense</p>
         <h2 id="h4" tabindex="-1" class="text-xl sm:text-2xl font-bold mt-1">Firewall Packet Filtering</h2></div>
-      <span class="warn text-xs font-semibold px-3 py-1 rounded-full" style="border:1px solid var(--warn)">Final</span>
+      <div class="flex items-center gap-2">
+        <span id="z4-debug-badge" class="font-mono text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 border border-cyan-500/50"></span>
+        <span class="warn text-xs font-semibold px-3 py-1 rounded-full" style="border:1px solid var(--warn)">Final</span>
+      </div>
     </div>
     <div class="p-5 sm:p-8 space-y-5">
-      
       <div class="pane p-4 space-y-3">
         <h3 class="text-xs font-semibold mu">1. Draw these 8 packet cards from the pile</h3>
         <div id="z4-drawn-packets" class="grid grid-cols-4 sm:grid-cols-8 gap-2 text-center font-mono"></div>
@@ -228,7 +263,7 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
       <div class="pane p-4 space-y-3">
         <h3 class="text-xs font-semibold mu">3. Derived policy (first matching rule wins)</h3>
         <ol id="z4-rules-list" class="space-y-2 font-mono text-xs sm:text-sm"></ol>
-        <p class="text-xs mu pt-3 leading-relaxed hd" style="border-bottom:0;border-top:1px solid var(--ln)"><b style="color:var(--tx)">4. Code extraction:</b> flip the cards in your <span class="ok font-medium">ALLOW</span> zone, sort by <b style="color:var(--tx)">port (low → high)</b>, then by <b style="color:var(--tx)">packet #</b>, and enter the letters on their backs.</p>
+        <p class="text-xs mu pt-3 leading-relaxed hd" style="border-bottom:0;border-top:1px solid var(--ln)"><b style="color:var(--tx)">4. Code extraction:</b> flip the cards in your <span class="ok font-medium">ALLOW</span> zone, sort by <b style="color:var(--tx)">packet # (low → high)</b>, and enter the letters on their backs.</p>
       </div>
       <div class="flex flex-col sm:flex-row gap-3">
         <label for="z4-input" class="sr-only">Firewall shutdown code</label>
@@ -267,7 +302,7 @@ body{background:var(--bg) radial-gradient(at 0 0,var(--g1),transparent 50%) fixe
 <footer class="py-4 text-center text-xs mu">Cyber Defense Educational Board Game • Companion terminal</footer>
 
 <script>
-const KEY='cyber_defense_game_session_v6', $=id=>document.getElementById(id);
+const KEY='cyber_defense_game_session_v9', $=id=>document.getElementById(id);
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const sleep=ms=>RM?Promise.resolve():new Promise(r=>setTimeout(r,ms));
 
@@ -278,31 +313,50 @@ function toggleTheme(){setTheme(document.documentElement.dataset.theme==='dark'?
   document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')})();
 
 /* ---------- DATA ---------- */
-const Z1_TRAPS=[
- {id:"#02",code:"HOOK-7342",v:"Lookalike domain 'n0vatech' (zero instead of 'o') + external link + urgency + password request."},
- {id:"#05",code:"ZIP-5821",v:"Forbidden .zip file attachment."},
- {id:"#06",code:"PASS-3094",v:"Direct request for user credentials via email."},
- {id:"#07",code:"LINK-6417",v:"Deceptive subdomain: real domain is 'benefits-portal.net' (read from right to left)."},
- {id:"#08",code:"FAKE-2750",v:"Wrong TLD '.co' instead of '.com' + artificial urgency + secret request."}];
-const Z1_LEGIT=["#01","#03","#04","#09","#10","#11","#12"];
+const Z1_CARDS=[
+ {id:"#01",code:"KQWPXLMN",trap:false},
+ {id:"#02",code:"FGEZISTR",trap:true,v:"Lookalike domain 'n0vatech' (zero instead of 'o') + external link + urgency + password request."},
+ {id:"#03",code:"VBNMHYTR",trap:false},
+ {id:"#04",code:"PLOKIJHU",trap:false},
+ {id:"#05",code:"ZXCVBNMQ",trap:true,v:"Forbidden .zip file attachment."},
+ {id:"#06",code:"WERTYUIO",trap:true,v:"Direct request for user credentials via email."},
+ {id:"#07",code:"ASDFGHJK",trap:true,v:"Deceptive subdomain: real domain is 'benefits-portal.net' (read from right to left)."},
+ {id:"#08",code:"MNBVCXZA",trap:true,v:"Wrong TLD '.co' instead of '.com' + artificial urgency + secret request."},
+ {id:"#09",code:"QAZWSXED",trap:false},
+ {id:"#10",code:"RFVTGBYH",trap:false},
+ {id:"#11",code:"NUJMIKOL",trap:false},
+ {id:"#12",code:"PQRSTUVX",trap:false}
+];
+const Z1_TRAPS=Z1_CARDS.filter(c=>c.trap);
+const Z1_LEGIT=Z1_CARDS.filter(c=>!c.trap).map(c=>c.id);
 
-// 8 réponses par fichier : A-N, A-E, A-S, A-W, B-N, B-E, B-S, B-W
+// 8 réponses par fichier : 0:A-N, 1:A-E, 2:A-S, 3:A-W, 4:B-N, 5:B-E, 6:B-S, 7:B-W
 const Z2_ANS=["10.0.4,ADMIN1,192.16,SRV_04,SHADOW,172.16,BACKUP,GHOST9","10.1.8,ROOT99,192.18,DB_SQL,CIPHER,172.20,PROXY2,VIPER7",
 "10.2.5,TOKEN3,192.22,WEB_01,FALCON,172.24,ROUTER,DELTA4","10.3.9,KEY_88,192.30,MAIL02,COBALT,172.28,SWITCH,OMEGA1",
 "10.4.2,HASH42,192.44,DNS_09,MATRIX,172.31,KERNEL,TITAN8","10.5.7,PASS77,192.51,VPN_03,VECTOR,172.18,SOCKET,ORION5",
 "10.6.1,USER12,192.63,CLOUD5,NEXUS0,172.22,PACKET,ALPHA6","10.7.3,AUTH55,192.75,NODE_8,PHANTM,172.26,BRIDGE,SIGMA2",
 "10.8.6,SUDO00,192.89,HOST_7,BREACH,172.29,SUBNET,ZEBRA3","10.9.0,VAULT6,192.99,PORT22,TROJAN,172.30,DAEMON,NOVA99"];
-const Z2_FMT=[".JPG",".PNG",".PDF",".GIF"], Z2_TYPE=["IP","PASS","IP","CODE","CODE","IP","PASS","CODE"];
-const Z2=Z2_ANS.flatMap((row,f)=>row.split(',').map((a,i)=>({card_id:`File #${String(f+1).padStart(2,'0')}`,
-  metadata_format:Z2_FMT[i%4],metadata_size:i<4?'> 5 MB':'< 5 MB',expected_answer:a,type:Z2_TYPE[i]})));
+
+const Z2_FMT=[".JPG",".PNG",".PDF",".GIF"];
+const Z2_ORIENT_LABEL=["A-N","A-E","A-S","A-W","B-N","B-E","B-S","B-W"];
+const Z2_TYPE=["IP","PASS","IP","CODE","CODE","IP","PASS","CODE"];
+
+const Z2=Z2_ANS.flatMap((row,f)=>row.split(',').map((a,i)=>({
+  card_id:`File #${String(f+1).padStart(2,'0')}`,
+  metadata_format:Z2_FMT[i%4],
+  metadata_size:i<4?'> 5 MB':'< 5 MB',
+  expected_answer:a,
+  type:Z2_TYPE[i],
+  debug:`${Z2_ORIENT_LABEL[i]} → ${a}`
+})));
 
 const Z3={
  IP:{hint:"Network & Infrastructure term (e.g. FIREWALL, GATEWAY, PROXY, SERVER…).",words:["FIREWALL","PROTOCOL","GATEWAY","NETWORK","SERVER","PROXY","MAINFRAME","TERMINAL","HONEYPOT","SANDBOX"]},
  PASS:{hint:"Access & Authentication term (e.g. PASSWORD, ENCRYPT, TOKEN, BIOMETRIC…).",words:["PASSWORD","ENCRYPT","DECRYPT","CIPHER","BIOMETRIC","TOKEN","DATABASE","ANTIVIRUS","KERNEL","PAYLOAD"]},
  CODE:{hint:"Cyber Threat & Malware term (e.g. MALWARE, TROJAN, EXPLOIT, PHISHING…).",words:["MALWARE","PHISHING","BACKDOOR","TROJAN","BOTNET","ROOTKIT","SPYWARE","KEYLOGGER","EXPLOIT","INTRUSION"]}};
 
-// 16 paquets : 4 couleurs (lignes) x 4 formes (colonnes, un port par forme)
-const COLORS=["BLUE","GREEN","YELLOW","RED"], SHAPES=["CIRCLE","SQUARE","TRIANGLE","HEXAGON"], PORTS=[443,80,22,21], LET="SCKAEFRTNLVPXZMQ";
+// 16 paquets : Bleu(1-4: A,K,C,S) | Vert(5-8: T,R,F,E) | Jaune(9-12: P,V,L,N) | Rouge(13-16: Q,M,Z,X)
+const COLORS=["BLUE","GREEN","YELLOW","RED"], SHAPES=["CIRCLE","SQUARE","TRIANGLE","HEXAGON"], PORTS=[443,80,22,21], LET="AKCSTRFEPVLNQMZX";
 const HEX={BLUE:"#3b82f6",GREEN:"#22c55e",YELLOW:"#eab308",RED:"#ef4444"};
 const PK=COLORS.flatMap((c,ci)=>SHAPES.map((s,si)=>({num:ci*4+si+1,color:c,shape:s,port:PORTS[si],letter:LET[ci*4+si]})));
 
@@ -318,7 +372,7 @@ function genZ4(pw){
     const drawn=shuffle(PK).slice(0,8).sort((a,b)=>a.num-b.num);
     const ok=drawn.filter(p=>p.color!==dc&&p.shape!==ds&&ap.includes(p.port));
     if(ok.length>=2&&ok.length<=4){
-      ok.sort((a,b)=>a.port-b.port||a.num-b.num);
+      ok.sort((a,b)=>a.num-b.num);
       return{signature:pw,meta:`${pw.length} chars • ${f}…${l}`,drawn:drawn.map(p=>p.num),dc,rc,ds,rs,ap,rp,code:ok.map(p=>p.letter).join('')};
     }
   }
@@ -355,7 +409,10 @@ function render(){
   }
   if(s.z2){
     $('z2-source-trap').textContent=`card ${s.z1.trapId}`;
-    $('z2-card-id').textContent=s.z2.card_id;$('z2-format').textContent=s.z2.metadata_format;$('z2-size').textContent=s.z2.metadata_size;
+    $('z2-card-id').textContent=s.z2.card_id;
+    $('z2-format').textContent=s.z2.metadata_format;
+    $('z2-size').textContent=s.z2.metadata_size;
+    $('z2-debug-badge').textContent=`DEBUG: ${s.z2.debug}`;
     $('z2-form').classList.toggle('hidden',s.z2Solved);
     $('z2-term').classList.toggle('hidden',!s.z2Solved);
     if(s.z2Solved&&s.activeScreen==='screen-2')runTerm(true);
@@ -368,7 +425,10 @@ function render(){
     $('z3-form').classList.remove('hidden');$('z3-success-panel').classList.add('hidden');
     if(k)renderCipher();
   }
-  if(s.z4){$('z4-drawn-packets').innerHTML=s.z4.drawn.map(n=>`<div class="pane py-2 font-bold ac text-sm">#${String(n).padStart(2,'0')}</div>`).join('');}
+  if(s.z4){
+    $('z4-drawn-packets').innerHTML=s.z4.drawn.map(n=>`<div class="pane py-2 font-bold ac text-sm">#${String(n).padStart(2,'0')}</div>`).join('');
+    $('z4-debug-badge').textContent=`DEBUG: ${s.z4.code}`;
+  }
   updateLives();updateProgress();showScreen(s.activeScreen);
 }
 
@@ -402,7 +462,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')hideAlert();
 /* ---------- ZONES 1-3 ---------- */
 function validateZone1(){
   const v=$('z1-input').value.trim().toUpperCase();if(!v)return;
-  if(v===state.z1.code){hideAlert();state.z1Solved=true;save();render()}else loseLife("FALSE ALARM",'z1-input');
+  if(v===state.z1.code){hideAlert();state.z1Solved=true;save();render()}else loseLife("FALSE ALARM — Check the fraudulent card.",'z1-input');
 }
 function validateZone2(){
   const v=$('z2-input').value.trim().toUpperCase();if(!v)return;
@@ -467,7 +527,6 @@ function ruleHTML(i){
 function renderRules(done){
   $('z4-rules-list').innerHTML=[0,1,2,3].map(i=>`<li class="rl pane${done?' done':''}"><b class="n">${i+1}.</b><span>${done?ruleHTML(i):'<span class="mu">Waiting for derivation…</span>'}</span></li>`).join('');
 }
-// Chaque règle est dérivée d'une caractéristique du mot de passe de l'étape 3
 function ruleSpecs(pw){
   const f=pw[0],l=pw.at(-1),n=pw.length;
   return [
