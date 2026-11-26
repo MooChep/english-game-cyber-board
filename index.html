@@ -356,7 +356,7 @@ const Z3={
  CODE:{hint:"Cyber Threat & Malware term (e.g. MALWARE, TROJAN, EXPLOIT, PHISHING…).",words:["MALWARE","PHISHING","BACKDOOR","TROJAN","BOTNET","ROOTKIT","SPYWARE","KEYLOGGER","EXPLOIT","INTRUSION"]}};
 
 // 16 paquets : Bleu(1-4: A,K,C,S) | Vert(5-8: T,R,F,E) | Jaune(9-12: P,V,L,N) | Rouge(13-16: Q,M,Z,X)
-const COLORS=["BLUE","GREEN","YELLOW","RED"], SHAPES=["CIRCLE","SQUARE","TRIANGLE","HEXAGON"], PORTS=[443,80,22,21], LET="AKCSTRFEPVLNQMZX";
+const COLORS=["BLUE","GREEN","YELLOW","RED"], SHAPES=["CIRCLE","SQUARE","TRIANGLE","HEXAGON"], PORTS=[443,80,22,21], LET="SCKAEFRTNLVPXZMQ";
 const HEX={BLUE:"#3b82f6",GREEN:"#22c55e",YELLOW:"#eab308",RED:"#ef4444"};
 const PK=COLORS.flatMap((c,ci)=>SHAPES.map((s,si)=>({num:ci*4+si+1,color:c,shape:s,port:PORTS[si],letter:LET[ci*4+si]})));
 
